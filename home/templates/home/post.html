@@ -1,0 +1,155 @@
+{%load static%}
+<html>
+<head>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/c698af6171.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="font-awesome-animation.min.css">
+
+
+<body>
+    <!-- Nav Bar
+
+    <nav class="navbar navbar-expand-lg navbar-bg-dark navbar-dark">
+      <img class="logo-image" src="images\logo-image.png" alt="Logo">
+     <h2 class="logo-text"><u>BEWELL</u></h2>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="solution.html">Meditation</a>
+        </li>
+      </ul>
+    </div>
+  </nav> -->
+
+
+    <!-- banner section -->
+    <header class="container-fluid">
+        <a href="C:\Users\DeLL\OneDrive\Desktop\expected last hackathon\index.html">
+            <img class="logo-image" src="{% static 'images\logo-image.png' %}" alt="Logo">
+            <h4 class="logo-text">BEWELL</h4>
+        </a>
+        <div class="banner-center text-center">
+            <h1>
+                Alone, we can do<br />
+                <strong>So Little</strong><br />
+                together, we can do<br />
+                <strong>So Much</strong>
+            </h1>
+    </header>
+    <!-- banner scetion end -->
+
+    <!-- <div class="card container" style="margin-top:5%;">
+    <img src="./image/comment-1.jpg" class="card-img-top" style="width: 10%;border-radius: 50%;">
+    <div class="card-body">
+      <h5 class="card-title">Name 1</h5>
+      <p class="card-text">
+        Some quick example text to build on the card title and make up the
+        bulk of the card's content.
+      </p>
+    </div>
+  </div>
+
+  <div class="card container" style="margin-top:5%;">
+    <img src="./image/comment-2.jpg" class="card-img-top" style="width: 10%;border-radius: 50%;">
+    <div class="card-body">
+      <h5 class="card-title">Name 1</h5>
+      <p class="card-text">
+        Some quick example text to build on the card title and make up the
+        bulk of the card's content.
+      </p>
+    </div>
+  </div>
+
+  <div class="card container" style="margin-top:5%;">
+    <img src="./image/comment-3.jpg" class="card-img-top" style="width: 10%;border-radius: 50%;">
+    <div class="card-body">
+      <h5 class="card-title">Name 1</h5>
+      <p class="card-text">
+        Some quick example text to build on the card title and make up the
+        bulk of the card's content.
+      </p>
+    </div>
+  </div> -->
+
+    <h2 style="text-align: center;">Share Your Story With Everyone</h2>
+
+    <div style="text-align: center;margin-right: 20px;">
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i
+                class="fas fa-plus-circle fa-4x" style="position:relative;"></i></button>
+
+        <div id="id01" class="modal">
+
+            <form class="modal-content animate" action="/" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                    <img src="{% static 'images/post.jpeg' %}" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="title"><b>Title</b></label>
+                    <input type="text" placeholder="Title" name="title" required>
+
+                    <div class="form-group">
+                      <label for="story">Story</label>
+                      <textarea class="form-control" name="story" id="story" placeholder="Your Story" rows="5"></textarea>
+                    </div>
+
+                    <div class="field">
+                      <label for="img" class="required-field">Add a Image if you want</label>
+                      <input type="file" id="img" name="img" accept="image/*" required>
+                      <!-- <p>Preferable size= 1200x700 (in pixels)</p> -->
+                    </div>
+
+                    <button type="submit">Share</button>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                        class="cancelbtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <!-- all posts -->
+    </div>
+    <div class="container my-3">
+          <h2>People's Stories</h2>
+          {%for p in post%}
+          <div class="card mb-3">
+            <img class="card-img-top" style="width: 200px; height:auto" src="/media/{{p.image}}" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{p.author}}</h5>
+              <p class="card-text">{{p.content}}</p>
+              <p class="card-text"><small class="text-muted">{{p.date}}</small></p>
+              <a href="/post/{{p.slug}}" class="stretched-link">Continue reading</a>
+            </div>
+          </div>
+          {%endfor%}
+          
+      </div>
+</body>
+<script src="{% static 'js/post.js' %}"></script>
+</head>
+
+</html>

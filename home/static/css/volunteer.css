@@ -1,0 +1,65 @@
+/* Navbar */
+.logo-image {
+    margin: 0 10px;
+    height: 100px;
+  }
+  .logo-text {
+    color: ghostwhite;
+  }
+  .navbar {
+    color:ghostwhite;
+  }
+  .navbar-brand {
+    font-family: "Ubuntu";
+    font-size: 1.1rem;
+    font-weight:bold;
+    color:ghostwhite;
+  }
+  
+  .nav-item {
+    padding: 0 18px;
+  }
+  
+  .nav-link {
+    font-family: "Montserrat-light";
+    font-size: 1.2rem ;
+    color:ghostwhite !important;
+  }
+  .nav-link :hover {
+      color: navajowhite !important;
+  }
+
+/* banner starts */
+header{
+    height: 80vh;
+    background-image:url(volunteer1.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover !important;
+   
+   }
+   
+   .banner-center{
+    height: 65vh;
+    color: ghostwhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 100px;
+   }
+   
+   .banner-center h1{
+    font-size: 2.5em;
+   }
+   
+    /* banner end */
+
+    /* Button */
+
+    button{
+        width: 100%;
+        background-color: rgb(35, 181, 116);
+        color: white;
+        width: -webkit-fill-available;
+    }

@@ -1,0 +1,335 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Home</title>
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Ubuntu:wght@300&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-bg-dark navbar-dark">
+        <a href="/"><img class="logo-image" src="{% static 'images\logo-image.png' %}" alt="Logo"></a>
+        <br>
+        <h2 class="logo-text">BEWELL</h2>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/games">Fun Games</a>
+                </li>
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav mr-2">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button"
+                            data-toggle="dropdown"> Welcome
+                            {{request.user}}</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/logout">Logout</a>
+    
+                        </div>
+                    </li>
+                </ul>
+        </div>
+        {% else %}
+        <!-- Button to  trigger Login modal -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="/login">Log In</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#signupModal" href="/signup">Sign Up</a>
+        </li>
+        <!-- <button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#loginModal">
+            Login
+        </button>
+        
+        <button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#signupModal">
+            SignUp
+        </button> -->
+        {% endif %}
+        </ul>
+        </div>
+    
+    </nav>
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message : </strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalTitle">SignUp Here</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/signup" method='post'>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                placeholder="Choose a unique username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fname">First Name</label>
+                            <input type="text" class="form-control" id="fname" name="fname"
+                                placeholder="Enter Your First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lname">Last Name</label>
+                            <input type="text" class="form-control" id="lname" name="lname"
+                                placeholder="Enter Your Last Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass1">Choose a password</label>
+                            <input type="password" class="form-control" id="pass1" name="pass1"
+                                placeholder="Choose Your Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass2">Confirm Password</label>
+                            <input type="password" class="form-control" id="pass2" name="pass2"
+                                placeholder="Enter your password again" required>
+                        </div>
+    
+    
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalTitle">Login Here</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="POST"> {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" id="loginusername" name="loginusername"
+                                placeholder="Enter your username " required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Enter your password </label>
+                            <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                                placeholder="Enter your password " required>
+                        </div>
+    
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+            </div>
+            </div>
+    <!-- <nav class="navbar navbar-expand-lg navbar-bg-dark navbar-dark">
+        <a href="/"><img class="logo-image" src="{% static 'images\logo-image.png' %}" alt="Logo"></a>
+        <br>
+        <h2 class="logo-text">BEWELL</h2>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/games">Games</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+            </ul>
+        </div>
+        
+    </nav> -->
+    <!-- Nav Bar -->
+        <section class="first">
+            
+            <i class="first-aid fas fa-4x fa-first-aid"></i>
+            <i class="stethoscope fas fa-4x fa-stethoscope"></i>
+            <i class="universal-access fas fa-4x fa-universal-access"></i>
+            
+            <div class="text">
+                <h2 class="header">Need Medical Help? Find A Doctor </h2>
+                <h4 class="header-color">Contact our well trained physciatrists to keep a track of your psychological and
+                    mental conditions while staying at home.
+                    Also, use the benefit of experimented solutions to improve your mental well-being.</h4>
+                </div>
+                
+                <div class="">
+                    <!-- <img class="corona" src="images/corona.png" alt=""> -->
+                    <img class="laptop"  src="{% static 'images/laptop.png' %}" alt="">
+                    <img class="doctor"  src="{% static 'images/doctor.png' %}" alt="">
+                    <img class="patient" src="{% static 'images/patient.png' %}" alt="">
+        </div>
+
+        <div class="microphone"> <i class="icon-1 fas fa-microphone"></i> </div>
+        <div class="call-end"> <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48"
+                viewBox="0 0 172 172" style=" fill:#000000;position: relative;top: 8px;height: 35px;">
+                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                    stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                    font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                    style="mix-blend-mode: normal">
+                    <path d="M0,172v-172h172v172z" fill="none"></path>
+                    <g fill="#e74c3c">
+                        <path
+                            d="M148.3444,106.77214c-0.69987,0.72786 -0.69987,0.72786 -1.42774,0.72786c-0.72786,0 -3.58333,0 -5.01107,-1.42774c-1.42773,-0.72786 -3.58333,-2.88346 -5.73893,-4.31119c-2.1556,-1.42774 -9.32226,-6.43881 -13.60547,-8.5944c-4.3112,-2.1556 -6.4668,-2.85547 -7.16667,-6.4388c-0.72787,-3.58333 -0.72787,-20.80013 -0.72787,-20.80013c0,0 -7.16667,-1.42774 -12.9056,-2.1556c-5.73893,-0.69988 -13.60547,-1.42774 -22.19987,-0.69988c-8.6224,0.69988 -16.48894,1.42774 -24.38347,4.28321c0,10.05012 0,18.64453 0,20.80012c0,2.1556 0,2.85547 -2.85547,4.28321c-2.88346,1.45573 -7.89453,3.58333 -11.47786,6.46679c-3.58333,2.85547 -7.86653,5.73894 -10.02214,7.86654c-2.88346,1.45573 -2.88346,0.72786 -4.31119,0.72786c-1.42774,0 -3.58333,-0.72786 -4.2832,-1.42774c-0.72787,0 -1.45573,-1.42773 -6.4668,-6.46679c-4.2832,-4.28321 -10.75,-10.75 -12.17774,-12.17774c-1.42774,-1.42774 -1.42774,-1.42774 -2.1556,-2.85547l-1.42774,-2.88346c0,-0.69988 0.72787,-3.58333 2.1556,-5.01107c1.42774,-1.42774 6.43881,-5.73893 10.02214,-8.5944c3.58333,-2.85547 14.33333,-9.32226 18.64453,-11.47786c4.28321,-2.1276 18.61654,-9.29427 39.41667,-12.17774c21.5,-2.85547 42.27214,0.72786 56.60547,5.01107c14.33333,5.03906 27.9668,13.63346 34.4056,17.91667c6.43881,4.31119 8.5944,6.46679 9.32226,8.6224c1.42774,2.1276 0.69988,4.2832 0.69988,5.71094c-0.69988,1.45573 -1.42774,2.88346 -2.85547,4.31119c-1.42774,1.42774 -5.01107,5.01107 -10.02213,10.02214c-4.3112,5.03906 -10.05013,10.75 -10.05013,10.75z">
+                        </path>
+                    </g>
+                </g>
+            </svg> </div>
+        <div class="video"> <i class="icon-3 fas fa-video"></i> </div>
+    </section>
+
+    <section class="Lets-play">
+        <div class="row row-cols-1 row-cols-md-3">
+            <div class="col mb-4">
+                <div class="card">
+                        <img src="{% static 'images\findatherapist.png' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/doctor/">
+                            <h5 class="card-title">Find A Therapist</h5>
+                        </a>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{% static 'images\getinvolved.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/involve/">
+                            <h5 class="card-title">Get Involved Today</h5>
+                        </a>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{% static 'images\donate.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/donate/">
+                            <h5 class="card-title">Donate Today</h5>
+                        </a>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{% static 'images\grouptherapy.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/group-sessions/">
+                            <h5 class="card-title">Group Sessions</h5>
+                        </a>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{% static 'images\solution.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/cures/">
+                            <h5 class="card-title">Cures</h5>
+                        </a>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="{% static 'images\volunteer.jpg' %}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <a href="/volunteer/">
+                            <h5 class="card-title">Volunteer</h5>
+                        </a>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- <section>
+<h1>Start your journey to healing today.</h1>
+<p> Empower yourself with our doctors online self-healing training. </p>
+
+<div> </div>
+<div></div>
+</section> -->
+
+    <!-- Footer -->
+
+    <footer id="footer">
+
+        <i class="social-icon fab fa-instagram"></i>
+        <i class="social-icon fab fa-twitter"></i>
+        <i class="social-icon fab fa-facebook-f"></i>
+        <i class="social-icon fas fa-envelope"></i>
+        <p>© Copyright 2021 <u>BEWELL</u></p>
+
+    </footer>
+
+    <script src="{% static 'js\homepage.js' %}"></script>
+</body>
+
+</html>
+
+
+
+
+

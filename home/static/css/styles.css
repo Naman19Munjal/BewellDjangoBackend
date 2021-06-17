@@ -1,0 +1,179 @@
+body {
+    background-color: aliceblue;
+    overflow-x: hidden;
+}
+/* Navbar */
+.logo-image {
+  margin: 0 10px;
+  height: 100px;
+}
+.navbar {
+  color:ghostwhite;
+  background-color:darkslategray;
+}
+.navbar-brand {
+  font-family: "Ubuntu";
+  font-size: 1.1rem;
+  font-weight:bold;
+  color:ghostwhite;
+  background-color:darkslategray;
+}
+
+.nav-item {
+  padding: 0 18px;
+}
+
+.nav-link {
+  font-family: "Montserrat-light";
+  font-size: 1.2rem ;
+  color:ghostwhite;
+}
+/* design-section */
+/* .first {
+  position: relative;
+      bottom: 80px;
+      right: 50px;
+} */
+.text {
+  margin-top: 12%;
+    float: left;
+    width: 400px;
+    margin-left: 10%;
+    text-align:center;
+}
+.header {
+    color:darkblue;
+    font-size:2.7rem;
+    text-align:center;
+}
+.header-color {
+    width: 280px;
+    position: relative;
+    left: 60px;
+    margin-top: 6%;
+}
+.laptop {
+  height: 500px;
+  margin-top:6%;
+  z-index: 17;
+  position: relative;
+  left: 110px;
+  margin-left: 0;
+  margin-right:2%;
+}
+.doctor {
+  position: relative;
+bottom: 25px;
+    right: 215px;
+    height: 260px;
+  z-index: 18;
+}
+.first-aid {
+  position: relative;
+    z-index: 18;
+ top: 200px;
+    left: 150px;
+    color:slategray;
+}
+.stethoscope {
+  position: relative;
+    z-index: 18;
+ top: 200px;
+    left: 195px;
+    color:slategray;
+}
+.universal-access {
+  position: relative;
+    z-index: 18;
+top: 310px;
+    left: 55px;
+    color:slategray;
+}
+.microphone {
+background-color: aliceblue;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    text-align: center;
+    float: left;
+    position: relative;
+    left: 817px;
+    bottom: 210px;
+    z-index: 18;
+}
+
+.card-img-top{
+  height: 200px;
+  width: 100%;
+}
+
+.icon-1 {
+        position: relative;
+    top: 8px;
+    color: darkslategray;
+}
+.call-end {
+ position: relative;
+    left: 900px;
+    bottom: 230px;
+    z-index: 18;
+    float: left;
+    /* color: red; */
+    background-color: aliceblue;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+}
+.video {
+ position: relative;
+    left: 983px;
+    bottom: 218px;
+    z-index: 18;
+    float: left;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: aliceblue;
+}
+.icon-3 {
+        position: relative;
+    top: 8px;
+    color: darkslategrey;
+}
+
+/* Accessing different sections of page */
+.addmargin {
+    margin-top:2%;
+    margin-bottom:6%;
+}
+.text-aligning {
+    text-align:center;
+}
+.Lets-play {
+    margin: 0 10% 0 10%;
+}
+.specify-div-height{
+  margin-bottom: 10%;
+  margin-right:5%;
+  border: 2px solid yellowgreen;
+}
+.specify-height {
+    text-align: center;
+    height: 200px;
+    margin-top: 6%;
+    width: 340px;
+}
+
+/* Footer Section */
+
+#footer {
+  padding: 1% 15% ;
+  text-align: center;
+  color: indigo;
+}
+
+.social-icon {
+  margin:20px 10px;
+}
