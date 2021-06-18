@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages 
 from django.contrib.auth.models import User 
 from django.contrib.auth  import authenticate,  login, logout
-from .models import Post,Volunteer,MedicineDonation,PostComment
+from .models import Post,Volunteer,MedicineDonation,PostComment,Doctor,Session
+from datetime import datetime,date
 # Create your views here.
 
 def index(request):
@@ -154,4 +155,24 @@ def postview(request,slug):
     return render(request,'home/postdetail.html',params)
 
 def doctor(request):
-    return render(request,'home/doctor.html')
+    doc = Doctor.objects.filter(is_doc=True)
+    params = {'doc':doc}
+    return render(request,'home/doctor.html',params)
+
+def doctor_reg(request):
+    if request.method=="POST":
+        name = request.POST.get('name','')
+        type_of_doc = request.POST.get('type_of_doc','')
+        spec = request.POST.get('spec','')
+        reg_id = request.POST.get('reg_id','')
+        state = request.POST.get('state','')
+        user = request.user
+        obj = Doctor(user=user,name=name,type_of_doc=type_of_doc,spec=spec,reg_id=reg_id,state=state)
+        obj.save()
+        return redirect('/doctor/')
+    return render(request,'home/doctorform.html')
+
+def session(request):
+    session = Session.objects.all()
+    params = {'session':session} 
+    return render(request,'home/groupsession.html',params)

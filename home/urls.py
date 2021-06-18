@@ -21,5 +21,6 @@ urlpatterns = [
     path('login', views.log_in, name="handleLogin"),
     path('logout', views.log_out, name="handleLogout"),
     path('doctor/', views.doctor, name="handleLogout"),
-
+    path('doctor/registration', views.doctor_reg, name="handleLogout"),
+    path('group-sessions/', views.session, name="handleLogout"),
 ]

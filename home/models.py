@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from datetime import date,datetime
+from datetime import date,datetime,timedelta
 from django.contrib.auth.models import User
 # # Create your models here.
 
@@ -66,13 +66,16 @@ class Doctor(models.Model):
 
     def __str__(self):
         return self.name +' '+ self.type_of_doc
-
+    
 class Session(models.Model):
     id =models.AutoField(primary_key=True)
     doc=models.ForeignKey(Doctor, on_delete=models.CASCADE)
     title=models.CharField(max_length=100)
     type_of_session = models.CharField(max_length=100)
     meeting_url = models.URLField(max_length=500)
-    # st = models.TimeField(def)
-    # et = models.TimeField
+    date = models.DateField(default=date.today)
+    st = models.TimeField()
+    et = models.TimeField()
 
+    def __str__(self):
+        return self.doc.user.username + self.type_of_session

@@ -52,7 +52,10 @@
     
     <section>
         <div class="col-6 my-4">
-            <div class="table-responsive">
+            {% if user.is_authenticated %}
+            <a href="/doctor/registration"><button type="button" class="btn btn-info">Register yourself as doctor</button></a>
+            {%endif%}
+            <div class="table-responsive my-2">
                 <table class="table table-striped">
                     <thead>
                         <tr>
